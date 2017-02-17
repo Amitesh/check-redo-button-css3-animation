@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+
+<style>
+
+
+    /*common in both tic and cross*/
+    .redo-gradient {
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#bfbfbf+1,bfbfbf+15,e8e8e8+56,bfbfbf+87,c4c4c4+100 */
+        background: #bfbfbf; /* Old browsers */
+        background: -moz-linear-gradient(top, #bfbfbf 1%, #bfbfbf 15%, #e8e8e8 56%, #bfbfbf 87%, #c4c4c4 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, #bfbfbf 1%, #bfbfbf 15%, #e8e8e8 56%, #bfbfbf 87%, #c4c4c4 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, #bfbfbf 1%, #bfbfbf 15%, #e8e8e8 56%, #bfbfbf 87%, #c4c4c4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#bfbfbf', endColorstr='#c4c4c4', GradientType=0); /* IE6-9 */
+    }
+
+    .check-button {
+        border: none;
+        font-family: inherit;
+        cursor: pointer;
+        padding: 25px 0px;
+        display: inline-block;
+        margin: 15px 30px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+        position: relative;
+        outline: none;
+        color: #fff;
+        height: 70px;
+        min-width: 260px;
+        line-height: 30px;
+        font-size: 26px;
+        overflow: hidden;
+        border-radius: 10px;
+    }
+
+    .check-button span {
+        display: inline-block;
+        height: 100%;
+        -webkit-transition: all 1s;
+        -moz-transition: all 1s;
+        transition: all 1s;
+    }
+
+    .check-button:before {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        line-height: 68px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    /*for cross button */
+    @keyframes cross-btn-animation {
+        0% {
+            width: 100%;
+            font-size: 350%;
+            line-height: 60px;
+        }
+        10% {
+            width: 100%;
+            font-size: 350%;
+            line-height: 60px;
+        }
+        100% {
+            width: 30%;
+            font-size: 150%;
+            line-height: 68px;
+        }
+    }
+
+    .redo {
+        padding-left: 4%;
+    }
+
+    .redo:before {
+
+        background-color: red;
+        animation-name: cross-btn-animation;
+        animation-duration: 1s;
+        transition-timing-function: linear;
+        animation-fill-mode: forwards;
+        -webkit-animation-fill-mode: forwards;
+    }
+
+    .redo:before {
+        content: "×";
+        background-image: linear-gradient(#b33327 4%, #c23e30 38%, #c34030 38%, #cf4937 66%, #d9513c 88%, #de533e)
+    }
+
+    .redo:before {
+        top: 0;
+        left: 0;
+    }
+
+    /*for tick button*/
+    .check-correct:before {
+        position: absolute;
+        background-color: green;
+        height: 100%;
+        width: 100%;
+        line-height: 75px;
+        content: "✓";
+        font-size: 250%;
+        border-radius: 0;
+        -webkit-transition: all 1s;
+        -moz-transition: all 1s;
+        transition: all 1s;
+    }
+
+    .check-correct:hover span {
+
+        -webkit-transform: translateX(-300%);
+        -moz-transform: translateX(-300%);
+        -ms-transform: translateX(-300%);
+        transform: translateX(-300%);
+    }
+
+    .check-correct:before {
+        left: 200%;
+        top: 0;
+    }
+
+    .check-correct:hover:before {
+        left: 0;
+    }
+
+</style>
+<script>
+    function checkClick() {
+        document.getElementById("check").innerHTML = "Redo";
+        $("#check").addClass("redo redo-gradient");
+    }
+    function reset() {
+        document.getElementById("check").innerHTML = "Check";
+        $("#check").removeClass("redo");
+    }
+</script>
+<body>
+<!--check incorrect-->
+<button id="check" class="check-button redo-gradient" onclick="checkClick()">
+    <span>check</span>
+</button>
+<!--check correct -->
+<br><br>
+<a href="#" onclick="reset()">Reset</a>
+<br><br>
+<!--check correct -->
+<button class="check-button check-correct redo-gradient ">
+    <span>check</span>
+</button>
+</body>
+</html>
